@@ -1,107 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
-
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
+  --brand-color: #7408a6;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
+*:focus {
+  -webkit-tap-highlight-color: transparent;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+*::selection {
+  @apply bg-purple-100;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  padding-top: 140px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.divider {
+  @apply block h-7 w-[1px] bg-black/20 mx-4;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.primary-btn {
+  @apply bg-purple-700;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+#header {
+  @apply fixed top-0 left-0 w-full bg-white/90 z-[99] shadow transition-transform;
+}
+
+#header .top {
+  @apply block h-[30px] w-full bg-purple-700;
+}
+
+#header .top .container {
+  @apply flex items-center justify-between h-full max-w-7xl mx-auto px-2;
+}
+
+#header .top .container .slogan {
+  @apply text-white text-xs tracking-tight;
+}
+
+#header .middle {
+  @apply block h-[75px] w-full bg-white z-10 relative;
+}
+
+#header .middle .container {
+  @apply flex items-center justify-between h-full w-full mx-auto max-w-7xl px-4;
+}
+
+#header .middle #logo {
+  @apply inline-flex items-center gap-2;
+}
+
+#header .middle #logo span {
+  @apply text-2xl text-slate-800 font-semibold tracking-widest;
+}
+
+#header .middle .container .navigation {
+  @apply flex items-center justify-end flex-wrap;
+}
+
+#header .middle .container .navigation li a {
+  @apply p-3 text-slate-600 transition-all text-[13px] leading-6 font-bold;
+}
+
+#header .middle .container .navigation .auth-tab {
+  position: relative;
+}
+
+#header .middle .container .navigation .auth-tab .link {
+  @apply inline-flex items-center gap-2 text-slate-700 cursor-pointer select-none;
+}
+
+#header .middle .container .navigation .auth-tab .dropdown {
+  @apply absolute w-[196px] top-[90%] left-[50%] pt-2 -translate-x-[50%] opacity-0 invisible pointer-events-none transition-all z-[999];
+}
+
+#header .middle .container .navigation .auth-tab .dropdown div {
+  @apply w-full h-full bg-white/75 p-4 border rounded flex flex-col justify-between gap-2 shadow-2xl;
+  backdrop-filter: blur(20px);
+}
+
+#header .middle .container .navigation .auth-tab .dropdown a {
+  @apply h-[30px] flex items-center justify-center rounded font-semibold uppercase text-xs bg-white border border-slate-300 transition-all hover:bg-purple-900;
+}
+
+#header .middle .container .navigation .auth-tab .dropdown a.active {
+  background-color: var(--brand-color);
+  color: #fff;
+}
+
+#header
+  .middle
+  .container
+  .navigation
+  .auth-tab
+  .dropdown
+  a:not(.active):hover {
+  background: #eee;
+}
+
+#header .middle .container .navigation .auth-tab:hover > .dropdown {
+  @apply opacity-100 visible pointer-events-auto;
+}
+
+#header .bot {
+  @apply block h-[35px] w-full bg-white relative transition-transform;
+}
+
+#header .bot ul {
+  @apply flex items-center justify-start h-full max-w-7xl mx-auto px-2 tracking-wider overflow-x-auto;
+}
+
+#header .bot a {
+  @apply inline-flex items-center justify-center px-4 font-bold text-xs text-slate-500 border-b-2 h-full border-transparent transition-all hover:border-[#1d1d1f] whitespace-nowrap;
+}
+
+#header .middle .container .navigation .auth-tab .dropdown a,
+#header .middle .container .navigation li a:hover,
+#header .bot a:hover {
+  color: var(--brand-color);
 }

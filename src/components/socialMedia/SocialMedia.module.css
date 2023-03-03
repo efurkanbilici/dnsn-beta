@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.list li {
+  display: block;
+  height: 100%;
+}
+
+.list li a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  height: inherit;
+  opacity: 0.85;
+  color: #fff;
+  transition: 0.3s opacity ease;
+}
+
+.list li a:hover {
+  opacity: 1;
+}
